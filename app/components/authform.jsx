@@ -4,7 +4,8 @@ import { useState } from "react"
 import { supabase } from "../utils/supabaseClient"
 import { useRouter } from "next/navigation"
 
-export default function AuthForm(){
+export default function AuthForm()
+{
     const [isNewUser, setIsNewUser]     = useState(false)
     const [email, setEmail]             = useState('')
     const [password, setPassword]       = useState('')
@@ -15,34 +16,43 @@ export default function AuthForm(){
     async function handleLogin(e){
         e.preventDefault();
         setIsSigningIn(true)
-        const {data, error} = await supabase.auth.signInWithPassword({
+        const {data, error} = await supabase.auth.signInWithPassword(
+        {
             email, password
         })
         console.log({error, data})
-        if (!error){
+        if (!error)
+        {
             router.push('/photos')
-        } else {
+        } 
+        else 
+        {
             setIsSigningIn(false)
         }
     }
 
     async function handleSignUp(e){
-        e.preventDefault();
-        const {data, error} = await supabase.auth.signUp({
+        e.preventDefault()
+        const {data, error} = await supabase.auth.signUp(
+        {
             email,
             password
         })
-        if (!error){
+        if (!error)
+        {
             setIsSigningUp(true)
         }
-        console.log({data, error});
+        console.log({data, error})
     }
 
     let signInMessage = 'Sign In';
 
-    if (isSigningIn){
+    if (isSigningIn)
+    {
         signInMessage = 'Signing In'
-    } else if (isNewUser){
+    } 
+    else if (isNewUser)
+    {
         signInMessage = 'Sign Up'
     }
 
@@ -97,5 +107,5 @@ export default function AuthForm(){
             </p>
             {isSigningUp && signUpMessage}
         </form>
-    );
+    )
 }
