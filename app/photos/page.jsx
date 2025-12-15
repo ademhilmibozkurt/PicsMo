@@ -1,3 +1,5 @@
+import SignOutButton from "../components/signoutbutton"
+
 function Photos()
 {
     return (
@@ -11,7 +13,7 @@ function Photos()
             </div>
 
             <div className="absolute top-4 right-4">
-                {/* sign out button */}
+                <SignOutButton/>
             </div>
         </main>
     )
