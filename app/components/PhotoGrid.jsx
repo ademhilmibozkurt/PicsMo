@@ -1,10 +1,11 @@
 import { supabaseServer } from "../utils/supabaseServerClient"
+import Photo from "./Photo"
 
 async function fetchUserPhotos(user)
 {
     if (!user) return
 
-    const folderPath    = `user_upload/${user.id}/`
+    const folderPath    = `user_uploads/${user.id}/`
     const {data, error} = await supabaseServer.storage.from('photos').list(folderPath)
 
     if (error)
