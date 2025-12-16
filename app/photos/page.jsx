@@ -1,7 +1,7 @@
-import PhotoUploader from "../components/photouploader"
-import SignOutButton from "../components/signoutbutton"
+import PhotoUploader from "../components/PhotoUploader"
+import SignOutButton from "../components/SignOutButton"
 
-function Photos()
+export default function Photos()
 {
     return (
         <main className="min-h-screen bg-gray-800 text-white relative p-10">
@@ -19,5 +19,3 @@ function Photos()
         </main>
     )
 }
-
-export default Photos
