@@ -1,9 +1,8 @@
 import { createServerClient } from "@supabase/ssr"
-import next from "next"
 import { cookies } from "next/headers"
 import { NextResponse } from "next/server"
 
-async function GET(request)
+export async function GET(request)
 {
     const {searchParams} = new URL(request.url)
     const token_hash     = searchParams.get('token_hash')
@@ -27,10 +26,10 @@ async function GET(request)
     if (token_hash && type)
     {
         const {error} = await supabase.auth.verifyOtp(
-            {
-                type, token_hash
-            }
-        )
+        {
+            type, token_hash
+        })
+
         if (!error)
         {
             return NextResponse.redirect(next)
@@ -39,5 +38,3 @@ async function GET(request)
 
     return NextResponse.redirect('/error')
 }
-
-export default GET()
