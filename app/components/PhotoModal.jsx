@@ -14,8 +14,8 @@ export default function PhotoModal({src, alt, onClose})
                     <Image
                         src={src}
                         alt={alt}
-                        layout="fill"
-                        objectFit="contain"
+                        fill={true}
+                        style={{objectFit:'cover', objectPosition: 'center'}}
                         className="rounded-lg"/>
                 </div>
             </div>
