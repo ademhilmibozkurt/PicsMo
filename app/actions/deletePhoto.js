@@ -1,6 +1,7 @@
 'use server'
 
 import { createServerClient } from "@supabase/ssr"
+import { revalidatePath } from "next/cache"
 import { cookies } from "next/headers"
 
 function extractFilePath(url)
@@ -47,6 +48,9 @@ export async function deletePhoto(formData)
     {
         return {success: false, error}
     }
+
+    revalidatePath('/photos')
+    revalidatePath('/favorites')
 
     return {success: true}
 }
