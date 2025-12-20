@@ -7,7 +7,7 @@ import { cookies } from "next/headers"
 export async function addOrRemoveFromFavorites(formData)
 {
     const photoName   = formData.get('photoName')
-    const isFavorited = formData.get('isFavorited')
+    const wasFavorited = formData.get('wasFavorited') === 'true'
     const cookieStore = cookies()
 
     const supabase = createServerClient(
@@ -27,7 +27,7 @@ export async function addOrRemoveFromFavorites(formData)
 
     if (!user) return {success: false, error: 'User is not authenticated'}
 
-    if (isFavorited === 'true')
+    if (wasFavorited)
     {
         const {error} = await supabase
             .from('favorites')
@@ -42,11 +42,11 @@ export async function addOrRemoveFromFavorites(formData)
             .from('favorites')
             .insert([{user_id: user.id, photo_name: photoName}])
         
-        if (error) return {succes: false, error}
+        if (error) return {success: false, error}
     }
 
     revalidatePath('/photos')
-    revalidatePath('/revalidate')
+    revalidatePath('/favorites')
 
     return {success: true}
 }

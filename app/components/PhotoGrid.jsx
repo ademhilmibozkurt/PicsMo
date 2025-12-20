@@ -77,7 +77,8 @@ export default async function PhotoGrid({favorites=false})
                         alt={`Photo ${photo.photoName}`}
                         width={200}
                         height={200}
-                        photoName={photo.photoName}/>
+                        photoName={photo.photoName}
+                        isFavorited={photo.isFavorited}/>
                 )
             }
         </div>
